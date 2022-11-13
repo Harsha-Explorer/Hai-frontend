@@ -9,6 +9,7 @@ import {BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.css';
 import './App.css'
 import Favourites from './components/Favourites';
+import Errorpage from './components/Errorpage';
 
 const App = () => {
   return (
@@ -25,6 +26,7 @@ const App = () => {
           <Route exact path="/login" element={<Login/>} />
           <Route exact path="/signup" element={<Signup/>} />
           <Route exact path="/logout" element={<Logout/>} />
+          <Route path="*" element={<Errorpage/>}/>
         </Routes>
       </Suspense>      
     </Router>
