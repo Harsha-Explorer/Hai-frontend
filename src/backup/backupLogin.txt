@@ -1,0 +1,44 @@
+import React from 'react'
+import '../App.css'
+export default function Login() {
+    return (
+      <>
+      <section>
+          <div className='container-fluid'>
+          <div class="float-child">
+            <div class="login-image">
+              <figure>
+                <img src="https://media.istockphoto.com/vectors/register-account-submit-access-login-password-username-internet-vector-id1281150061?k=20&m=1281150061&s=612x612&w=0&h=wpCvmggedXRECWK-FVL98MMllubyevIrXuUu50fdCqE=" alt=""></img>
+              </figure>
+            </div>
+          </div>
+          
+          <div class="float-child-right">
+            <div class="login-form">
+            <form class="shadow-lg p-5 mb-5 bg-body rounded">
+                  <h1 style={{'textAlign':'center'}}>Login</h1>
+                  <br></br>
+                  <div className='input-group mb-3'>
+                    <label for="exampleInputEmail1"><i class="zmdi zmdi-account" style={{'position':'absolute','left':'0','top':'8px','paddingLeft':'40px','padding':'25px 8px'}}></i>
+                      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" style={{'paddingLeft':'36px'}} placeholder="Email" autoComplete='off'/>
+                    </label>
+                  </div>
+                  <div class="input-group mb-3">
+                    <label for="exampleInputPassword1">
+                      <i class="zmdi zmdi-lock" style={{'position':'absolute','left':'0','top':'8px','paddingLeft':'40px','padding':'25px 8px'}}></i>
+                      <input type="password" class="form-control input-lg" id="exampleInputPassword1" style={{'paddingLeft':'36px'}} placeholder="Password"/>
+                    </label> 
+                  </div>
+                  <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" id="exampleCheck1"/>
+                    <label class="form-check-label" for="exampleCheck1">Remember me</label>
+                  </div>
+                  <button type="submit" class="btn btn-primary">Login</button>
+                </form>
+            </div>
+          </div>
+          </div>
+        </section>
+      </>
+    )
+}

@@ -36,3 +36,30 @@
     transform: rotate(360deg);
   }
 }
+
+::-webkit-scrollbar{
+  width: 30px;
+}
+
+img{
+  height: 380px;
+  width: 100%;
+}
+
+.float-child {
+  width: 43%;
+  float: left;
+  padding: 20px;
+  border: 2px solid white;
+  padding-top: 170px;
+  padding-left: 100px;
+} 
+.float-child-right {
+  width: 40%;
+  float: left;
+  padding: 20px;
+  border: 2px solid white;
+  padding-top: 150px;
+  align-items: center;
+  padding-left: 100px;
+} 
