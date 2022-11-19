@@ -74,6 +74,7 @@ const Signup = () => {
       setModalStatement(res.data); 
       setIsSignup("true");
       localStorage.setItem("user-info",JSON.stringify(res.data))
+      localStorage.setItem("loggedin-count",'0')
       navigate("/")
     })
     .catch((err)=>{

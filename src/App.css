@@ -38,7 +38,7 @@
 }
 
 ::-webkit-scrollbar{
-  width: 30px;
+  width: 5px;
 }
 
 img{
@@ -63,3 +63,16 @@ img{
   align-items: center;
   padding-left: 100px;
 } 
+
+.zoom {
+  padding: 20px;
+  background-color: white;
+  transition: transform .1s; /* Animation */
+  width: 250px;
+  height: 300px;
+  margin: 0 auto;
+}
+
+.zoom:hover {
+  transform: scale(1.2); /* (120% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}
