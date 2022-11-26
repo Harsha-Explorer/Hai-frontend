@@ -1,0 +1,25 @@
+import Carousel from 'react-multi-carousel';
+ <Carousel swipeable={true}
+                draggable={false}
+                showDots={true}
+                responsive={responsive}
+                ssr={true} // means to render carousel on server-side.
+                infinite={true}
+                keyBoardControl={true}
+                containerClass="carousel-container"
+                removeArrowOnDeviceType={["tablet", "mobile"]}
+                dotListClass="custom-dot-list-style"
+                >
+                <div className='d-flex' style={{'marginTop':'50px'}}>
+                {itemImages.image.map((item)=>(
+                    <div  style={{'marginTop':'50px'}}>
+                        <div >
+                            {/* changes required for url routing */}
+                            <a href="/itemLists">
+                                <img src={item} alt="" style={{'height':'70px','width':'70%'}}></img>
+                            </a>
+                        </div>
+                    </div>
+                ))}
+                </div>
+            </Carousel>

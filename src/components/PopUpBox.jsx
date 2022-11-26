@@ -15,8 +15,8 @@ const PopUpBox = (props) => {
         props.onHide()
       }
     }
-    if(localStorage.getItem("loggedin-count")==='0'){
-      localStorage.setItem("loggedin-count",'1')
+    if(sessionStorage.getItem("loggedin-count")==='0'){
+      sessionStorage.setItem("loggedin-count",'1')
     }
     return (
       <Modal

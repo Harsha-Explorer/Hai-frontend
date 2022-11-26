@@ -16,7 +16,7 @@ import { useNavigate } from 'react-router-dom';
 function Login() {
   const navigate = useNavigate();
   useEffect(()=>{
-    if(localStorage.getItem('user-info')){
+    if(sessionStorage.getItem('user-info')){
       navigate("/");
     }
   },[])
@@ -60,8 +60,9 @@ function Login() {
       return;
     }
     await UserService.checkUserLogin(user).then((res)=>{
-      localStorage.setItem("user-info",JSON.stringify(res.data))
-      localStorage.setItem("loggedin-count",'0')
+      sessionStorage.setItem("user-info",JSON.stringify(res.data))
+      sessionStorage.setItem("loggedin-count",'0')
+      sessionStorage.setItem("username",user.username)
       navigate("/")
     })
     .catch((err)=>{

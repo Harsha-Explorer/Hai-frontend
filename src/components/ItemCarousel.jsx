@@ -34,7 +34,7 @@ const ItemCarousel = (props) => {
                 <MDBCol>
                     <div style={{'backgroundColor':'ButtonShadow'}}>
                         <h1  className='text-center mx-3 mb-0' style={{'textAlign':'center'}}>{props.itemname}</h1>
-                        <img src={props.imageSource} alt=""  style={{'height':'250px'}}></img>
+                        <img src={props.imageSource} alt=""  style={{'height':'100%','width':'100%','paddingLeft':'20%','paddingRight':'20%'}}></img>
                     </div>
                 </MDBCol>
                 <MDBCol md='9' >
@@ -51,11 +51,18 @@ const ItemCarousel = (props) => {
                         itemClass="carousel-item-padding-40-px" 
                         >
                         {props.items.map((item)=>(
-                            <div id={item.id} className='zoom'>
-                                <a href="/favourites" >
-                                <img src={item.image} alt="" style={{'height':'230px'}}  className="w-100"></img>
-                                </a>
+                            <div id={item.id} >
+                                <div className='zoom'  style={{'height':'100%'}}>
+                                    {/* changes required for url routing */}
+                                    <a href="/itemLists">
+                                        <img src={item.image} alt="" style={{'height':'160px'}}  className="w-100"></img>
+                                    </a>
+                                </div>
+                                <br></br>
+                                <p style={{'textAlign':'center','fontWeight':'500'}}>{item.itemName}</p>
+                                <p style={{'textAlign':'center','color':'green'}}>Shop Now!</p>
                             </div>
+                            
                         ))}
                     </Carousel>
                 </MDBCol>

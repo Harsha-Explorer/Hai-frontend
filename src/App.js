@@ -8,24 +8,28 @@ import React,{Suspense} from 'react';
 import {BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.css';
 import './App.css'
-import Favourites from './components/Favourites';
+import Cart from './components/Cart';
 import Errorpage from './components/Errorpage';
+import ItemLists from './components/ItemLists';
+import Item from './components/Item';
+
 
 const App = () => {
   return (
     <>
     <div className='Main'>
-    
     <Router>
       <Suspense fallback={<div>Loading...</div>}>
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route exact path="/about" element={<About />} />
           <Route exact path="/contact" element={<Contact />} />
-          <Route exact path="/favourites" element={<Favourites/>} />
+          <Route exact path="/cart" element={<Cart/>} />
           <Route exact path="/login" element={<Login/>} />
           <Route exact path="/signup" element={<Signup/>} />
           <Route exact path="/logout" element={<Logout/>} />
+          <Route exact path='/itemLists/*' element={<ItemLists/>}/>
+          <Route exact path='/item' element={<Item/>}/>
           <Route path="*" element={<Errorpage/>}/>
         </Routes>
       </Suspense>      

@@ -16,7 +16,7 @@ import { useNavigate } from 'react-router-dom';
 const Signup = () => {
   const navigate = useNavigate();
   useEffect(()=>{
-    if(localStorage.getItem('user-info')){
+    if(sessionStorage.getItem('user-info')){
       navigate("/");
     }
   },[])
@@ -73,8 +73,9 @@ const Signup = () => {
       setModalShow("true"); 
       setModalStatement(res.data); 
       setIsSignup("true");
-      localStorage.setItem("user-info",JSON.stringify(res.data))
-      localStorage.setItem("loggedin-count",'0')
+      sessionStorage.setItem("user-info",JSON.stringify(res.data))
+      sessionStorage.setItem("loggedin-count",'0')
+      sessionStorage.setItem("username",user.username)
       navigate("/")
     })
     .catch((err)=>{

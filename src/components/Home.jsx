@@ -14,12 +14,12 @@ const Home = () => {
 
   return (
     <>
-      {(localStorage.getItem('user-info') && localStorage.getItem("loggedin-count")==='0')?
+      {(sessionStorage.getItem('user-info') && sessionStorage.getItem("loggedin-count")==='0')?
         <>
           <PopUpBox
             show={modalShow}
             onHide={() => setModalShow(false)}
-            statement = {"Welcome to Hai. Feel the comfort :)"}
+            statement = {"Welcome to Hai "+ sessionStorage.getItem('username')+". Feel the comfort :)"}
           />
         </>
         :null
@@ -59,16 +59,16 @@ const Home = () => {
         
       </div> 
       {/* <img src="https://rukminim1.flixcart.com/flap/128/128/image/69c6589653afdb9a.png?q=100" alt=""/> */}
-      <div style={{'marginTop':'70px'}}>
+      <div style={{'marginTop':'70px'}} className="shadow-lg p-5 mb-5 bg-body rounded">
         <Electronics/>
       </div>
-      <div style={{'marginTop':'20px'}}>
+      <div className="shadow-lg p-5 mb-5 bg-body rounded">
         <Boutique/>
       </div>
-      <div style={{'marginTop':'20px'}}>
+      <div className="shadow-lg p-5 mb-5 bg-body rounded">
         <Groceries/>
       </div>
-      <div style={{'marginTop':'20px'}}>
+      <div className="shadow-lg p-5 mb-5 bg-body rounded">
         <Automobiles/>
       </div>
     </>

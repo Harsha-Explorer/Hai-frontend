@@ -32,13 +32,13 @@ export default function Navibar() {
 
             
             {
-              localStorage.getItem('user-info')?
+              sessionStorage.getItem('user-info')?
               <>
                 <li class="nav-item">
                   <Link class="nav-link" to="/about">About</Link>
                 </li>
                 <li class="nav-item">
-                  <Link class="nav-link" to="/favourites">Favourites</Link>
+                  <Link class="nav-link" to="/cart">Cart</Link>
                 </li>
               </>
               :
@@ -59,7 +59,7 @@ export default function Navibar() {
                 <a class="dropdown-item" href="/exchange">Exchange</a>
                 <a class="dropdown-item" href="/action">action</a>
                 
-                {localStorage.getItem('user-info')?
+                {sessionStorage.getItem('user-info')?
                 <>
                   <hr class="dropdown-divider" />
                   <Link class="dropdown-item" to="/logout">Logout</Link>
