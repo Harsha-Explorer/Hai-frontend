@@ -11,9 +11,10 @@ import '../App.css'
 import UserService from '../services/UserService';
 import Navibar from './Navibar';
 import { useNavigate } from 'react-router-dom';
-
+import LoadingSpin from "react-loading-spin";
 
 function Login() {
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   useEffect(()=>{
     if(sessionStorage.getItem('user-info')){
@@ -59,23 +60,34 @@ function Login() {
       setModalShow("true")
       return;
     }
+    setIsLoading(true)
     await UserService.checkUserLogin(user).then((res)=>{
       sessionStorage.setItem("user-info",JSON.stringify(res.data))
       sessionStorage.setItem("loggedin-count",'0')
       sessionStorage.setItem("username",user.username)
-      navigate("/")
+      setIsLoading(false)
+      navigate('/')
     })
     .catch((err)=>{
+      setIsLoading(false)
       setModalShow("true"); 
       setModalStatement(err.response.data);
     });
+    
   }
 
   return (
     <>
     <Navibar />
       <MDBContainer fluid className="p-3 my-5">
-        <MDBRow>
+        {
+          isLoading?(
+            <div className='d-flex justify-content-center' style={{'marginTop':'100px'}}>
+              <LoadingSpin />
+            </div>
+          )
+          :
+        (<MDBRow>
 
           <MDBCol>
           {/* https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg */}
@@ -116,9 +128,8 @@ function Login() {
             </form>
           
           </MDBCol>
-              
-
-      </MDBRow>
+        </MDBRow>)
+      }
       
 
       </MDBContainer>

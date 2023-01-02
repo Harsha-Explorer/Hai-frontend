@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react'
+import React, { useState,useEffect,useRef } from 'react'
 import '../App.css'
 import UserService from '../services/UserService';
 import {
@@ -11,9 +11,12 @@ from 'mdb-react-ui-kit';
 import PopUpBox from './PopUpBox';
 import Navibar from './Navibar';
 import { useNavigate } from 'react-router-dom';
-
+import LoadingSpin from "react-loading-spin";
 
 const Signup = () => {
+
+  const [isLoading, setIsLoading] = useState(false);
+
   const navigate = useNavigate();
   useEffect(()=>{
     if(sessionStorage.getItem('user-info')){
@@ -31,7 +34,7 @@ const Signup = () => {
   });
   
 
-  const inputEvent = (e) =>{
+  const inputEvent = (e)=> {
     const value = e.target.value;
     const name = e.target.name;
     setUser((preVal)=>{
@@ -43,7 +46,7 @@ const Signup = () => {
             setErrorMessage("")
           }
         })
-        .catch((err)=>{console.log(err.data)})
+        .catch((err)=>{console.log(err)})
         return{
           username:value,
           password:preVal.password
@@ -69,6 +72,7 @@ const Signup = () => {
       setModalShow("true")
       return;
     }
+    setIsLoading(true)
     await UserService.createUser(user).then((res)=>{
       setModalShow("true"); 
       setModalStatement(res.data); 
@@ -76,10 +80,12 @@ const Signup = () => {
       sessionStorage.setItem("user-info",JSON.stringify(res.data))
       sessionStorage.setItem("loggedin-count",'0')
       sessionStorage.setItem("username",user.username)
+      setIsLoading(false)
       navigate("/")
     })
     .catch((err)=>{
-      setModalShow("true"); setModalStatement(err.response.data);setIsSignup("false")
+      console.log(err)
+      setModalShow("true"); setModalStatement(err);setIsSignup("false")
     });
     
   };
@@ -89,8 +95,15 @@ const Signup = () => {
     <>
     <Navibar />
     <MDBContainer fluid className="p-3 my-5" >
-
-      <MDBRow>
+      {
+          isLoading?(
+            <div className='d-flex justify-content-center' style={{'marginTop':'100px'}}>
+              <LoadingSpin />
+            </div>
+          )
+          :
+        
+      (<MDBRow>
       <MDBCol>
       {/* https://st.depositphotos.com/18722762/51522/v/600/depositphotos_515228814-stock-illustration-online-registration-sign-login-account.jpg */}
           <img src="./images/signup.jpg" style={{'height':'100%'}} alt="LoginImg" />
@@ -103,7 +116,7 @@ const Signup = () => {
             <div className='input-group mb-6'>
               <label className='w-100'><i class="zmdi zmdi-account" style={{'position':'absolute','left':'0','top':'12px','paddingLeft':'40px','padding':'25px 8px'}}></i>
                 <MDBInput wrapperClass='mb-4' id='formControl' type='email' size="lg" placeholder='Username' style={{'paddingLeft':'40px'}} autoComplete='off' value={user.username} name='uName' onChange={inputEvent}/>
-                <p style={{'color':'red'}}>{errorMessage}</p>
+                <p style={{'color':'red'}}>{errorMessage}</p> 
               </label>
             </div>
             <div class="input-group mb-3">
@@ -128,7 +141,8 @@ const Signup = () => {
           </form>
         
         </MDBCol>
-      </MDBRow>
+      </MDBRow>)
+      }
 
     </MDBContainer>
     </>
